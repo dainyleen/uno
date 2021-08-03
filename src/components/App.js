@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Header from './Header'
+import Player from './Player'
 
 class Counter extends React.Component {
   state = { 
