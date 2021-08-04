@@ -11,6 +11,7 @@ class AddPlayerForm extends Component {
   }
 
   render() {
+    console.log(this.state.value)
     return (
       <form>
         <input 
