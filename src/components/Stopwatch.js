@@ -15,17 +15,17 @@ class Stopwatch extends Component {
   tick = () => {
     if (this.state.isRunning) {
       const now = Date.now()
-      this.setState({
+      this.setState( prevState => ({
         previousTime: now,
-        elapsedTime: this.state.elapsedTime + (now - this.state.previousTime)
-      })
+        elapsedTime: prevState.elapsedTime + (now - this.state.previousTime)
+      }))
     }
   }
 
   handleStopwatch = () => {
-    this.setState({
-      isRunning: !this.state.isRunning
-    })
+    this.setState( prevState => ({
+      isRunning: !prevState.isRunning
+    }))
     if (!this.state.isRunning) {
       this.setState({ previousTime: Date.now() })
     }
@@ -35,7 +35,9 @@ class Stopwatch extends Component {
     return (
       <div className='stopwatch'>
         <h2>Stopwatch</h2>
-        <span className='stopwatch-time'>0</span>
+        <span className='stopwatch-time'>
+          { Math.floor(this.state.elapsedTime / 1000)}
+        </span>
         <button onClick={this.handleStopwatch}>
           { this.state.isRunning ? 'Stop' : 'Start' }
         </button>
